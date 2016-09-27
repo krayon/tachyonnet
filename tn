@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--syslog-facility', default='user',
         choices=[
-            'none'.   'user',   'syslog',
+            'none',   'user',   'syslog',
             'daemon', 'local0', 'local1',
             'local2', 'local3', 'local4',
             'local5', 'local6', 'local7'
