@@ -98,11 +98,13 @@ class TachyonNet:
         elif self.notcp and self.noudp and self.noicmp:
             raise Exception('[-] Seriously?')
 
-        # open syslog
-        syslog.openlog(
-            logoption=syslog.LOG_PID,
-            facility=self.SF[self.syslog_facility]
-        )
+        # Syslog?
+        if self.syslog_facility != 'none':
+            # open syslog
+            syslog.openlog(
+                logoption=syslog.LOG_PID,
+                facility=self.SF[self.syslog_facility]
+            )
 
         # check logdir
         if not os.path.exists(self.logdir):
@@ -114,7 +116,14 @@ class TachyonNet:
         t.daemon = True
         t.start()
         self._myprint(
-            '[+] Logging to syslog, and directory: [%s]' % (self.logdir)
+            '[+] Logging to ', False
+        )
+        if self.syslog_facility != 'none':
+            self._myprint(
+                'syslog, and ', False
+            )
+        self._myprint(
+            'directory: [%s]' % (self.logdir)
         )
 
         if not self.notcp:
@@ -201,7 +210,8 @@ class TachyonNet:
         while True:
             d = self.LOGQ.get()
             if d[0] == 'msg':
-                syslog.syslog(d[1])
+                if self.syslog_facility != 'none':
+                    syslog.syslog(d[1])
                 now = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
                 lf.write('%s: %s\n' % (now, d[1]))
                 lf.flush()
