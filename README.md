@@ -42,7 +42,7 @@ The file name itself consists of:
     usage: tn [-h] [-b BINDADDR] [--mintcp MINTCP] [--maxtcp MAXTCP]
           [--minudp MINUDP] [--maxudp MAXUDP] [--bufsize BUFSIZE] [-t THREADS]
           [--notcp] [--noudp] [--noicmp] [-f] [--pidfile PIDFILE] [-D]
-          [--syslog-facility {user,syslog,daemon,local0,local1,local2,local3,local4,local5,local6,local7}]
+          [--syslog-facility {none,user,syslog,daemon,local0,local1,local2,local3,local4,local5,local6,local7}]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -64,4 +64,4 @@ The file name itself consists of:
                             (defaults to TCP RESET)
       --pidfile PIDFILE     filename to write process id file to (default: tn.pid)
       -D, --daemon          run in daemon mode
-      --syslog-facility     {user,syslog,daemon,local0,local1,local2,local3,local4,local5,local6,local7}
+      --syslog-facility     {none,user,syslog,daemon,local0,local1,local2,local3,local4,local5,local6,local7}
